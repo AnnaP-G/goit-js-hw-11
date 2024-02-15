@@ -15,14 +15,14 @@
 </head>
 
 <body>
-    <div class="container">
-        <form class="form">
-            <input class="form-input" type="text" name="query" placeholder="Search images..." />
-            <button class="button" type="submit">Search</button>
-        </form>
-        <div class="container-gallery"></div>
-    </div>
+    <form class="form">
+        <input type="text" class="form-input" name="input" placeholder="Search images..." required />
+        <button type="submit" class="form-btn">Search</button>
+    </form>
+    <span class="loader"></span>
+    <div class="gallery"></div>
     <script type="module" src="./gallery.js"></script>
 </body>
+
 
 </html>
