@@ -15,15 +15,13 @@
 </head>
 
 <body>
-    <form class=" form">
-        <input class="form-input" type="text" name="search" placeholder="Search images..." />
-        <button class="button">Search</button>
-    </form>
-    <section class="container">
-        <ul class="gallery"></ul>
-        <span class="loader hidden"></span>
-        <button class="button hidden" id="show-more">Load more</button>
-    </section>
+    <div class="container">
+        <form class="form">
+            <input class="form-input" type="text" name="query" placeholder="Search images..." />
+            <button class="button" type="submit">Search</button>
+        </form>
+        <div class="container-gallery"></div>
+    </div>
     <script type="module" src="./gallery.js"></script>
 </body>
 
