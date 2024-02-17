@@ -14,7 +14,7 @@ const searchParams = {
   orientation: 'horizontal',
   safesearch: true,
   q: '',
-}
+};
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -23,21 +23,45 @@ form.addEventListener('submit', e => {
   searchParams.q = inputValue;
   getPhoto()
     .then(images => createGallery(images))
-    .catch(error => console.log(error))
-  e.target.reset();
+    .catch(error => {
+            console.log(error);
+            iziToast.show({
+                message: 'An error occurred while retrieving images. Please try again.',
+                messageColor: '#FFFFFF',
+                backgroundColor: '#EF4040',
+                position: 'topRight',
+                messageSize: '16px',
+                messageLineHeight: '24px',
+                maxWidth: '432px',
+            });
+        });
+    e.target.reset();
 });
 
 function getPhoto() {
   const urlParams = new URLSearchParams(searchParams);
   return fetch(`https://pixabay.com/api/?${urlParams}`)
       .then(res => {
-      if (res.ok) {
-          return res.json();
-      } else {
-          throw new Error(res.status);
-      }
-  })
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(res.status);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            iziToast.show({
+                message: 'An error occurred while fetching images. Please try again.',
+                messageColor: '#FFFFFF',
+                backgroundColor: '#EF4040',
+                position: 'topRight',
+                messageSize: '16px',
+                messageLineHeight: '24px',
+                maxWidth: '432px',
+            });
+        });
 }
+
 
 function createGallery(images) {
   if (images.hits.length === 0) {
